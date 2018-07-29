@@ -221,8 +221,9 @@ public interface PushApi {
         /**
          * This matches the current number of members in the room. Parameters:
          * <ul>
-         * <li>is: A decimal integer optionally prefixed by one of, ==, <, >, >= or <=. A prefix of < matches rooms where the member
-         * count is strictly less than the given number and so forth. If no prefix is present, this parameter defaults to ==.</li>
+         * <li>is: A decimal integer optionally prefixed by one of, ==, &lt;, &gt;, &gt;= or &lt;=. A prefix of &lt; matches rooms
+         * where the member count is strictly less than the given number and so forth. If no prefix is present, this parameter
+         * defaults to ==.</li>
          * </ul>
          */
         public static final String ROOM_MEMBER_COUNT = "room_member_count";
@@ -230,10 +231,10 @@ public interface PushApi {
 
     /**
      * Gets all currently active pushers for the authenticated user.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @return Status code 200: The pushers for this user.
+     * @return <p>Status code 200: The pushers for this user.</p>
      */
     @GET("/_matrix/client/r0/pushers")
     PushersResponse showPushers();
@@ -241,29 +242,29 @@ public interface PushApi {
     /**
      * This endpoint allows the creation, modification and deletion of pushers for this user ID. The behaviour of this endpoint
      * varies depending on the values in the JSON body.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param pushersRequest  JSON body request.
-     * @return Status code 200: The pusher was set.
-     *     Status code 400: One or more of the pusher values were invalid.
-     *     Status code 429: This request was rate-limited.
+     * @param pushersRequest JSON body request.
+     * @return <p>Status code 200: The pusher was set.</p>
+     * <p>Status code 400: One or more of the pusher values were invalid.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @POST("/_matrix/client/r0/pushers/set")
     EmptyResponse setPushers(@Body PushersRequest pushersRequest);
 
     /**
      * This API is used to paginate through the list of events that the user has been, or would have been notified about.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param from            Pagination token given to retrieve the next set of events.
-     * @param only            Allows basic filtering of events returned. Supply highlight to return only events where the notification had
-     *                        the highlight tweak set.
-     * @param limit           Limit on the number of events to return in this request.
-     * @return Status code 200: A batch of events is being returned.
+     * @param from  Pagination token given to retrieve the next set of events.
+     * @param only  Allows basic filtering of events returned. Supply highlight to return only events where the notification had
+     *              the highlight tweak set.
+     * @param limit Limit on the number of events to return in this request.
+     * @return <p>Status code 200: A batch of events is being returned.</p>
      */
     @GET("/_matrix/client/r0/notifications")
     NotificationResponse notifications(@Query("from") String from, @Query("only") String only, @Query("limit") Long limit);
@@ -271,37 +272,37 @@ public interface PushApi {
     /**
      * Retrieve all push rulesets for this user. Clients can "drill-down" on the rulesets by suffixing a scope to this path e.g.
      * /pushrules/global/. This will return a subset of this data under the specified key e.g. the global key.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @return Status code 200: All the push rulesets for this user.
+     * @return <p>Status code 200: All the push rulesets for this user.</p>
      */
     @GET("/_matrix/client/r0/pushrules")
     PushRulesResponse pushRules();
 
     /**
      * Retrieve a single specified push rule.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param scope           Required. Global to specify global rules.
-     * @param kind            Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
-     * @param ruleId          Required. The identifier for the rule.
-     * @return Status code 200: The specific push rule. This will also include keys specific to the rule itself such as the rule's
-     *     actions and conditions if set.
+     * @param scope  Required. Global to specify global rules.
+     * @param kind   Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
+     * @param ruleId Required. The identifier for the rule.
+     * @return <p>Status code 200: The specific push rule. This will also include keys specific to the rule itself such as the rule's
+     * actions and conditions if set.</p>
      */
     @GET("/_matrix/client/r0/pushrules/{scope}/{kind}/{ruleId}")
     PushRule pushRule(@Path("scope") String scope, @Path("kind") String kind, @Path("ruleId") String ruleId);
 
     /**
      * This endpoint removes the push rule defined in the path.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param scope           Required. Global to specify global rules.
-     * @param kind            Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
-     * @param ruleId          Required. The identifier for the rule.
-     * @return Status code 200: The push rule was deleted.
+     * @param scope  Required. Global to specify global rules.
+     * @param kind   Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
+     * @param ruleId Required. The identifier for the rule.
+     * @return <p>Status code 200: The push rule was deleted.</p>
      */
     @DELETE("/_matrix/client/r0/pushrules/{scope}/{kind}/{ruleId}")
     EmptyResponse deleteRule(@Path("scope") String scope, @Path("kind") String kind, @Path("ruleId") String ruleId);
@@ -309,9 +310,9 @@ public interface PushApi {
     /**
      * This endpoint allows the creation, modification and deletion of pushers for this user ID. The behaviour of this endpoint
      * varies depending on the values in the JSON body.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
      * @param scope             Required. Global to specify global rules.
@@ -322,9 +323,9 @@ public interface PushApi {
      * @param after             This makes the new rule the next-less important rule relative to the given user defined rule. It is not
      *                          possible to add a rule relative to a predefined server rule.
      * @param pushUpdateRequest JSON body request.
-     * @return Status code 200: The pusher was set.
-     *     Status code 400: There was a problem configuring this push rule.
-     *     Status code 429: This request was rate-limited.
+     * @return <p>Status code 200: The pusher was set.</p>
+     * <p>Status code 400: There was a problem configuring this push rule.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @PUT("/_matrix/client/r0/pushrules/{scope}/{kind}/{ruleId}")
     EmptyResponse updateRule(@Path("scope") String scope, @Path("kind") String kind, @Path("ruleId") String ruleId,
@@ -332,28 +333,28 @@ public interface PushApi {
 
     /**
      * This endpoint gets whether the specified push rule is enabled.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param scope           Required. Either global or device/&lt;profile_tag&gt; to specify global rules or device rules for the given
-     *                        profile_tag.
-     * @param kind            Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
-     * @param ruleId          Required. The identifier for the rule.
-     * @return Status code 200: Whether the push rule is enabled.
+     * @param scope  Required. Either global or device/&lt;profile_tag&gt; to specify global rules or device rules for the given
+     *               profile_tag.
+     * @param kind   Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
+     * @param ruleId Required. The identifier for the rule.
+     * @return <p>Status code 200: Whether the push rule is enabled.</p>
      */
     @GET("/_matrix/client/r0/pushrules/{scope}/{kind}/{ruleId}/enabled")
     PushEnable getEnabled(@Path("scope") String scope, @Path("kind") String kind, @Path("ruleId") String ruleId);
 
     /**
      * This endpoint allows clients to enable or disable the specified push rule.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param scope           Required. Global to specify global rules.
-     * @param kind            Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
-     * @param ruleId          Required. The identifier for the rule.
-     * @param pushEnable      JSON body request.
-     * @return Status code 200: The push rule was enabled or disabled.
+     * @param scope      Required. Global to specify global rules.
+     * @param kind       Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
+     * @param ruleId     Required. The identifier for the rule.
+     * @param pushEnable JSON body request.
+     * @return <p>Status code 200: The push rule was enabled or disabled./</p>
      */
     @PUT("/_matrix/client/r0/pushrules/{scope}/{kind}/{ruleId}/enabled")
     EmptyResponse setEnabled(@Path("scope") String scope, @Path("kind") String kind, @Path("ruleId") String ruleId,
@@ -361,28 +362,28 @@ public interface PushApi {
 
     /**
      * This endpoint get the actions for the specified push rule.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param scope           Required. Either global or device/&lt;profile_tag&gt; to specify global rules or device rules for the given
-     *                        profile_tag.
-     * @param kind            Required. The kind of rule One of: ["override", "underride", "sender", "room", "content"].
-     * @param ruleId          Required. The identifier for the rule.
-     * @return Status code 200: The actions for this push rule.
+     * @param scope  Required. Either global or device/&lt;profile_tag&gt; to specify global rules or device rules for the given
+     *               profile_tag.
+     * @param kind   Required. The kind of rule One of: ["override", "underride", "sender", "room", "content"].
+     * @param ruleId Required. The identifier for the rule.
+     * @return <p>Status code 200: The actions for this push rule.</p>
      */
     @GET("/_matrix/client/r0/pushrules/{scope}/{kind}/{ruleId}/actions")
     PushActions getActions(@Path("scope") String scope, @Path("kind") String kind, @Path("ruleId") String ruleId);
 
     /**
      * This endpoint allows clients to change the actions of a push rule. This can be used to change the actions of builtin rules.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param scope           Required. Global to specify global rules.
-     * @param kind            Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
-     * @param ruleId          Required. The identifier for the rule.
-     * @param pushActions     JSON body request.
-     * @return Status code 200: The actions for the push rule were set.
+     * @param scope       Required. Global to specify global rules.
+     * @param kind        Required. The kind of rule. One of: ["override", "underride", "sender", "room", "content"].
+     * @param ruleId      Required. The identifier for the rule.
+     * @param pushActions JSON body request.
+     * @return <p>Status code 200: The actions for the push rule were set.</p>
      */
     @PUT("/_matrix/client/r0/pushrules/{scope}/{kind}/{ruleId}/actions")
     EmptyResponse setActions(@Path("scope") String scope, @Path("kind") String kind, @Path("ruleId") String ruleId,

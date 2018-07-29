@@ -49,32 +49,32 @@ public interface SyncApi {
      * Synchronise the client's state with the latest state on the server. Clients use this API when they first log in to get
      * an initial snapshot of the state on the server, and then continue to call this API to get incremental deltas to the state,
      * and to receive new messages.
-     * <p/>
+     * <br>
      * <b>Requires auth:</b> Yes.
      *
-     * @param filter          The ID of a filter created using the filter API or a filter JSON object encoded as a string. The server will
-     *                        detect whether it is an ID or a JSON object by whether the first character is a "{" open brace. Passing the
-     *                        JSON inline is best suited to one off requests. Creating a filter using the filter API is recommended for
-     *                        clients that reuse the same filter multiple times, for example in long poll requests.
-     * @param since           A point in time to continue a sync from.
-     * @param fullState       Controls whether to include the full state for all rooms the user is a member of.
-     *                        <p/>
-     *                        If this is set to true, then all state events will be returned, even if since is non-empty.
-     *                        The timeline will still be limited by the since parameter. In this case, the timeout parameter will be ignored
-     *                        and the query will return immediately, possibly with an empty timeline.
-     *                        <p/>
-     *                        If false, and since is non-empty, only state which has changed since the point indicated by since will be
-     *                        returned.
-     *                        <p/>
-     *                        By default, this is false.
-     * @param setPresence     Controls whether the client is automatically marked as online by polling this API. If this parameter is
-     *                        omitted then the client is automatically marked as online when it uses this API. Otherwise if the parameter
-     *                        is set to "offline" then the client is not marked as being online when it uses this API. One of: ["offline"]
-     * @param timeout         The maximum time to wait, in milliseconds, before returning this request. If no events (or other data) become
-     *                        available before this time elapses, the server will return a response with empty fields.
-     *                        <p/>
-     *                        By default, this is 0, so the server will return immediately even if the response is empty.
-     * @return Status code 200: The initial snapshot or delta for the client to use to update their state.
+     * @param filter      The ID of a filter created using the filter API or a filter JSON object encoded as a string. The server will
+     *                    detect whether it is an ID or a JSON object by whether the first character is a "{" open brace. Passing the
+     *                    JSON inline is best suited to one off requests. Creating a filter using the filter API is recommended for
+     *                    clients that reuse the same filter multiple times, for example in long poll requests.
+     * @param since       A point in time to continue a sync from.
+     * @param fullState   Controls whether to include the full state for all rooms the user is a member of.
+     *                    <br>
+     *                    If this is set to true, then all state events will be returned, even if since is non-empty.
+     *                    The timeline will still be limited by the since parameter. In this case, the timeout parameter will be ignored
+     *                    and the query will return immediately, possibly with an empty timeline.
+     *                    <br>
+     *                    If false, and since is non-empty, only state which has changed since the point indicated by since will be
+     *                    returned.
+     *                    <br>
+     *                    By default, this is false.
+     * @param setPresence Controls whether the client is automatically marked as online by polling this API. If this parameter is
+     *                    omitted then the client is automatically marked as online when it uses this API. Otherwise if the parameter
+     *                    is set to "offline" then the client is not marked as being online when it uses this API. One of: ["offline"]
+     * @param timeout     The maximum time to wait, in milliseconds, before returning this request. If no events (or other data) become
+     *                    available before this time elapses, the server will return a response with empty fields.
+     *                    <br>
+     *                    By default, this is 0, so the server will return immediately even if the response is empty.
+     * @return <p>Status code 200: The initial snapshot or delta for the client to use to update their state.</p>
      */
     @GET("/_matrix/client/r0/sync")
     @Headers("Content-type: application/json")
@@ -84,20 +84,20 @@ public interface SyncApi {
     /**
      * This will listen for new events related to a particular room and return them to the caller. This will block until an event is
      * received, or until the timeout is reached.
-     * <p/>
+     * <br>
      * This API is the same as the normal /events endpoint, but can be called by users who have not joined the room.
-     * <p/>
+     * <br>
      * Note that the normal /events endpoint has been deprecated. This API will also be deprecated at some point, but its
      * replacement is not yet known.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param from            The token to stream from. This token is either from a previous request to this API or from the initial sync
-     *                        API.
-     * @param timeout         The maximum time in milliseconds to wait for an event.
-     * @param roomId          The room ID for which events should be returned.
-     * @return Status code 200: The events received, which may be none.
-     *     Status code 400: Bad pagination from parameter.
+     * @param from    The token to stream from. This token is either from a previous request to this API or from the initial sync
+     *                API.
+     * @param timeout The maximum time in milliseconds to wait for an event.
+     * @param roomId  The room ID for which events should be returned.
+     * @return <p>Status code 200: The events received, which may be none.</p>
+     * <p>Status code 400: Bad pagination from parameter.</p>
      */
     @GET("/_matrix/client/r0/events")
     @Headers("Content-type: application/json")

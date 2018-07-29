@@ -22,7 +22,7 @@ import io.github.ma1uta.matrix.gene.model.common.events.nested.Answer;
 
 /**
  * Message Event.
- * <p/>
+ * <br>
  * This event is sent by the callee when they wish to answer the call.
  */
 public class CallAnswer implements EventContent {

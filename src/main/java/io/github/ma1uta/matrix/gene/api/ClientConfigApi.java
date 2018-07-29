@@ -32,14 +32,14 @@ public interface ClientConfigApi {
     /**
      * Set some account_data for the client. This config is only visible to the user that set the account_data. The config will be
      * synced to clients in the top-level account_data.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
      * @param userId      Required. The id of the user to set account_data for. The access token must be authorized to make
      *                    requests for this user id.
      * @param type        Required. The event type of the account_data to set. Custom types should be namespaced to avoid clashes.
      * @param accountData account data.
-     * @return Status code 200: The account_data was successfully added.
+     * @return <p>Status code 200: The account_data was successfully added.</p>
      */
     @PUT("/_matrix/client/r0/user/{userId}/account_data/{type}")
     @Headers("Content-type: application/json")
@@ -48,7 +48,7 @@ public interface ClientConfigApi {
     /**
      * Set some account_data for the client on a given room. This config is only visible to the user that set the account_data.
      * The config will be synced to clients in the per-room account_data.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
      * @param userId      Required. The id of the user to set account_data for. The access token must be authorized to make requests for
@@ -56,7 +56,7 @@ public interface ClientConfigApi {
      * @param roomId      Required. The id of the room to set account_data on.
      * @param type        Required. The event type of the account_data to set. Custom types should be namespaced to avoid clashes.
      * @param accountData account data.
-     * @return Status code 200: The account_data was successfully added.
+     * @return <p>Status code 200: The account_data was successfully added.</p>
      */
     @PUT("/_matrix/client/r0/user/{userId}/rooms/{roomId}/account_data/{type}")
     @Headers("Content-type: application/json")

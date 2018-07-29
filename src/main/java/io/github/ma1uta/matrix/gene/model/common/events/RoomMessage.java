@@ -18,6 +18,7 @@ package io.github.ma1uta.matrix.gene.model.common.events;
 
 import com.google.gson.annotations.SerializedName;
 import io.github.ma1uta.matrix.gene.model.common.EventContent;
+import io.github.ma1uta.matrix.gene.model.common.events.nested.Relates;
 
 /**
  * This event is used when sending messages in a room. Messages are not limited to be text. The ``msgtype`` key outlines the type
@@ -28,7 +29,7 @@ public abstract class RoomMessage implements EventContent {
 
     /**
      * Message type.
-     * <p/>
+     * <br>
      * Read-only.
      *
      * @return message type.
@@ -40,4 +41,11 @@ public abstract class RoomMessage implements EventContent {
      * The textual representation of this message.
      */
     public String body;
+
+    /**
+     * Relates (replies, ...).
+     */
+    @SerializedName("m.relates_to")
+    public Relates relatesTo;
+
 }

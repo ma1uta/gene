@@ -22,7 +22,7 @@ import retrofit2.http.Query;
 
 /**
  * Central Authentication Service (CAS) is a web-based single sign-on protocol.
- * <p/>
+ * <br>
  * An overview of the process, as used in Matrix, is as follows:
  * <ul>
  * <li>The Matrix client instructs the user's browser to navigate to the /login/cas/redirect endpoint on the user's homeserver.</li>
@@ -35,16 +35,15 @@ import retrofit2.http.Query;
  * client application. A login token is passed as a query parameter in the redirect.</li>
  * <li>The Matrix client receives the login token and passes it to the /login API.</li>
  * </ul>
- * <p/>
  */
 public interface CasApi {
 
     /**
      * A web-based Matrix client should instruct the user's browser to navigate to this endpoint in order to log in via CAS.
-     * <p/>
+     * <br>
      * The server MUST respond with an HTTP redirect to the CAS interface. The URI MUST include a service parameter giving the path
      * of the /login/cas/ticket endpoint (including the redirectUrl query parameter).
-     * <p/>
+     * <br>
      * For example, if the endpoint is called with redirectUrl=https://client.example.com/?q=p, it might redirect to
      * {@code https://cas.example.com/?service=https%3A%2F%2Fserver.example.com%2F_matrix%2Fclient%2Fr0%2Flogin%2Fcas%2Fticket%3Fredirect
      * Url%3Dhttps%253A%252F%252Fclient.example.com%252F%253Fq%253Dp}.
@@ -58,12 +57,12 @@ public interface CasApi {
     /**
      * Once the CAS server has authenticated the user, it will redirect the browser to this endpoint (assuming /login/cas/redirect
      * gave it the correct service parameter).
-     * <p/>
+     * <br>
      * The server MUST call /proxyValidate on the CAS server, to validate the ticket supplied by the browser.
-     * <p/>
+     * <br>
      * If validation is successful, the server must generate a Matrix login token. It must then respond with an HTTP redirect to the
      * URI given in the redirectUrl parameter, adding a loginToken query parameter giving the generated token.
-     * <p/>
+     * <br>
      * If validation is unsuccessful, the server should respond with a 401 Unauthorized error, the body of which will be displayed
      * to the user.
      *

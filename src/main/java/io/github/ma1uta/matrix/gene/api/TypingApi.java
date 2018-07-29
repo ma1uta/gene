@@ -27,7 +27,7 @@ import retrofit2.http.Path;
  * When a client receives an m.typing event, it MUST use the user ID list to REPLACE its knowledge of every user who is currently
  * typing. The reason for this is that the server does not remember users who are not currently typing as that list gets big quickly.
  * The client should mark as not typing any user ID who is not in that list.
- * <p/>
+ * <br>
  * It is recommended that clients store a boolean indicating whether the user is typing or not. Whilst this value is true a timer
  * should fire periodically every N seconds to send a typing HTTP request. The value of N is recommended to be no more than 20-30 seconds.
  * This request should be re-sent by the client to continue informing the server the user is still typing. As subsequent requests
@@ -40,16 +40,16 @@ public interface TypingApi {
     /**
      * This tells the server that the user is typing for the next N milliseconds where N is the value specified in the timeout key.
      * Alternatively, if typing is false, it tells the server that the user has stopped typing.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param roomId          Required. The user who has started to type.
-     * @param userId          Required. The room in which the user is typing.
-     * @param request         json body request.
-     * @return Status code 200: The new typing state was set.
-     *     Status code 429: This request was rate-limited.
+     * @param roomId  Required. The user who has started to type.
+     * @param userId  Required. The room in which the user is typing.
+     * @param request json body request.
+     * @return <p>Status code 200: The new typing state was set.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @PUT("/_matrix/client/r0/rooms/{roomId}/typing/{userId}")
     @Headers("Content-type: application/json")

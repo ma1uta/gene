@@ -22,7 +22,7 @@ import io.github.ma1uta.matrix.gene.model.common.events.nested.Offer;
 
 /**
  * Message Event.
- * <p/>
+ * <br>
  * This event is sent by the caller when they wish to establish a call.
  */
 public class CallInvite implements EventContent {

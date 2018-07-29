@@ -22,21 +22,19 @@ import retrofit2.http.GET;
 /**
  * The homeserver MAY provide a TURN server which clients can use to contact the remote party. The following HTTP API endpoints will
  * be used by clients in order to get information about the TURN server.
- * <p/>
- * <a href="https://matrix.org/docs/spec/client_server/r0.3.0.html#get-matrix-client-r0-voip-turnserver">Specification.</a>
  */
 public interface VoipApi {
 
     /**
      * This API provides credentials for the client to use when initiating calls.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @return Status code 200: The TURN server credentials.
-     *     Status code 429: This request was rate-limited.
+     * @return <p>Status code 200: The TURN server credentials.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
-    @GET("/_matrix/client/r0/voip/turnServer")
+    @GET("/_matrix/client/r0/voibrturnServer")
     VoipResponse turnServer();
 }

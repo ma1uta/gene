@@ -40,7 +40,7 @@ public class EventContextResponse {
 
     /**
      * The historic profile information of the users that sent the events returned.
-     * <p/>
+     * <br>
      * The string key is the user ID for which the profile belongs to.
      */
     @SerializedName("profile_info")

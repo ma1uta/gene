@@ -44,14 +44,14 @@ public class RoomEventResults {
 
     /**
      * The current state for every room in the results. This is included if the request had the include_state key set with a value of true.
-     * <p/>
+     * <br>
      * The string key is the room ID for which the State Event array belongs to.
      */
     public Map<String, List<Event>> state;
 
     /**
      * Any groups that were requested.
-     * <p/>
+     * <br>
      * The outer string key is the group key requested (eg: room_id or sender). The inner string key is the grouped value
      * (eg: a room's ID or a user's ID).
      */

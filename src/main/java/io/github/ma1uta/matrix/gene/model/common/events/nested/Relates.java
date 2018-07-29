@@ -14,27 +14,18 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events;
+package io.github.ma1uta.matrix.gene.model.common.events.nested;
 
 import com.google.gson.annotations.SerializedName;
-import io.github.ma1uta.matrix.gene.model.common.EventContent;
 
 /**
- * Message Event.
- * <br>
- * Sent by either party to signal their termination of the call. This can be sent either once the call has has been
- * established or before to abort the call.
+ * Related data.
  */
-public class CallHangup implements EventContent {
+public class Relates {
 
     /**
-     * Required. The ID of the call this event relates to.
+     * Reply.
      */
-    @SerializedName("call_id")
-    public String callId;
-
-    /**
-     * Required. The version of the VoIP specification this message adheres to. This specification is version 0.
-     */
-    public Long version;
+    @SerializedName("m.in_reply_to")
+    public Reply inReplyTo;
 }

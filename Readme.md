@@ -14,7 +14,7 @@ You need Java and Maven.
 ```$bash
     git clone https://github.com/ma1uta/gene
     cd gene
-    mvn package
+    mvn install
 ```
 
 Library you can find in the folder `target`.

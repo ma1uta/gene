@@ -54,13 +54,13 @@ public interface TagApi {
 
     /**
      * List the tags set by a user on a room.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
      * @param userId Required. The id of the user to get tags for. The access token must be authorized to make requests for this
      *               user id.
      * @param roomId Required. The id of the room to get tags for.
-     * @return Status code 200: The list of tags for the user for the room.
+     * @return <p>Status code 200: The list of tags for the user for the room.</p>
      */
     @GET("/_matrix/client/r0/user/{userId}/rooms/{roomId}/tags")
     @Headers("Content-type: application/json")
@@ -68,7 +68,7 @@ public interface TagApi {
 
     /**
      * Add a tag to the room.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
      * @param userId  Required. The id of the user to add a tag for. The access token must be authorized to make requests for this
@@ -76,7 +76,7 @@ public interface TagApi {
      * @param roomId  Required. The id of the room to add a tag to.
      * @param tag     Required. The tag to add.
      * @param tagData tag data.
-     * @return Status code 200: The tag was successfully added.
+     * @return <p>Status code 200: The tag was successfully added.</p>
      */
     @PUT("/_matrix/client/r0/user/{userId}/rooms/{roomId}/tags/{tag}")
     @Headers("Content-type: application/json")
@@ -85,14 +85,14 @@ public interface TagApi {
 
     /**
      * Remove a tag from the room.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
      * @param userId Required. The id of the user to remove a tag for. The access token must be authorized to make requests
      *               for this user id.
      * @param roomId Required. The id of the room to remove a tag from.
      * @param tag    Required. The tag to remove.
-     * @return Status code 200: The tag was successfully removed.
+     * @return <p>Status code 200: The tag was successfully removed.</p>
      */
     @DELETE("/_matrix/client/r0/user/{userId}/rooms/{roomId}/tags/{tag}")
     @Headers("Content-type: application/json")

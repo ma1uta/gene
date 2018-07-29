@@ -28,7 +28,7 @@ public class QueryResponse {
     /**
      * If any remote homeservers could not be reached, they are recorded here. The names of the properties are the names of
      * the unreachable servers.
-     * <p/>
+     * <br>
      * If the homeserver could be reached, but the user or device was unknown, no failure is recorded. Instead, the corresponding
      * user or device is missing from the device_keys result.
      */

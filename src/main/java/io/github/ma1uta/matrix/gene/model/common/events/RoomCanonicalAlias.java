@@ -21,7 +21,7 @@ import io.github.ma1uta.matrix.gene.model.common.EventContent;
 /**
  * This event is used to inform the room about which alias should be considered the canonical one. This could be for display purposes
  * or as suggestion to users which alias to use to advertise the room.
- * <p/>
+ * <br>
  * A room with an m.room.canonical_alias event with an absent, null, or empty alias field should be treated the same as a room
  * with no m.room.canonical_alias event.
  */

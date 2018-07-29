@@ -34,15 +34,15 @@ public interface ProfileApi {
     /**
      * This API sets the given user's display name. You must have permission to set this user's display name, e.g. you need to
      * have their access_token.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param userId          Required. The user whose display name to set.
-     * @param displayName     JSON body request.
-     * @return Status code 200: The display name was set.
-     *     Status code 429: This request was rate-limited.
+     * @param userId      Required. The user whose display name to set.
+     * @param displayName JSON body request.
+     * @return <p>Status code 200: The display name was set.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @PUT("/_matrix/client/r0/profile/{userId}/displayname")
     @Headers("Content-type: application/json")
@@ -52,9 +52,9 @@ public interface ProfileApi {
      * Get the user's display name. This API may be used to fetch the user's own displayname or to query the name of other users; either
      * locally or on remote homeservers.
      *
-     * @param userId          Required. The user whose display name to get.
-     * @return Status code 200: The display name for this user.
-     *     Status code 404: There is no display name for this user or this user does not exist.
+     * @param userId Required. The user whose display name to get.
+     * @return <p>Status code 200: The display name for this user.</p>
+     * <p>Status code 404: There is no display name for this user or this user does not exist.</p>
      */
     @GET("/_matrix/client/r0/profile/{userId}/displayname")
     @Headers("Content-type: application/json")
@@ -63,15 +63,15 @@ public interface ProfileApi {
     /**
      * This API sets the given user's avatar URL. You must have permission to set this user's avatar URL, e.g. you need to have
      * their access_token.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param userId          Required. The user whose avatar URL to set.
-     * @param avatarUrl       JSON body request.
-     * @return Status code 200: The avatar URL was set.
-     *     Status code 429: This request was rate-limited.
+     * @param userId    Required. The user whose avatar URL to set.
+     * @param avatarUrl JSON body request.
+     * @return <p>Status code 200: The avatar URL was set.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @PUT("/_matrix/client/r0/profile/{userId}/avatar_url")
     @Headers("Content-type: application/json")
@@ -81,9 +81,9 @@ public interface ProfileApi {
      * Get the user's avatar URL. This API may be used to fetch the user's own avatar URL or to query the URL of other users;
      * either locally or on remote homeservers.
      *
-     * @param userId          Required. The user whose avatar URL to get.
-     * @return Status code 200: The avatar URL for this user.
-     *     Status code 404: There is no avatar URL for this user or this user does not exist.
+     * @param userId Required. The user whose avatar URL to get.
+     * @return <p>Status code 200: The avatar URL for this user.</p>
+     * <p>Status code 404: There is no avatar URL for this user or this user does not exist.</p>
      */
     @GET("/_matrix/client/r0/profile/{userId}/avatar_url")
     @Headers("Content-type: application/json")
@@ -93,9 +93,9 @@ public interface ProfileApi {
      * Get the combined profile information for this user. This API may be used to fetch the user's own profile information or
      * other users; either locally or on remote homeservers. This API may return keys which are not limited to displayname or avatar_url.
      *
-     * @param userId          Required. The user whose profile information to get.
-     * @return Status code 200: The avatar URL for this user.
-     *     Status code 404: There is no profile information for this user or this user does not exist.
+     * @param userId Required. The user whose profile information to get.
+     * @return <p>Status code 200: The avatar URL for this user.</p>
+     * <p>Status code 404: There is no profile information for this user or this user does not exist.</p>
      */
     @GET("/_matrix/client/r0/profile/{userId}")
     @Headers("Content-type: application/json")

@@ -24,7 +24,7 @@ import retrofit2.http.POST;
 
 /**
  * User directory.
- * <p/>
+ * <br>
  * Provides search over all users.
  */
 public interface UserDirectoryApi {
@@ -32,14 +32,14 @@ public interface UserDirectoryApi {
     /**
      * This API performs a server-side search over all users registered on the server. It searches user ID and displayname
      * case-insensitively for users that you share a room with or that are in public rooms.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param request         json body request.
-     * @return Status code 200: The results of the search.
-     *     Status code 429: This request was rate-limited.
+     * @param request json body request.
+     * @return <p>Status code 200: The results of the search.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @POST("/_matrix/client/r0/user_directory/search")
     @Headers("Content-type: application/json")

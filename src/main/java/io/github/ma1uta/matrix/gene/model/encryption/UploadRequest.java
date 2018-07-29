@@ -34,7 +34,7 @@ public class UploadRequest {
     /**
      * One-time public keys for "pre-key" messages. The names of the properties should be in the format (algorithm):(key_id).
      * The format of the key is determined by the key algorithm.
-     * <p/>
+     * <br>
      * May be absent if no new one-time keys are required.
      */
     @SerializedName("one_time_keys")

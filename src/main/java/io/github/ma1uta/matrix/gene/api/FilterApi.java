@@ -32,13 +32,13 @@ public interface FilterApi {
     /**
      * Uploads a new filter definition to the homeserver. Returns a filter ID that may be used in future requests to restrict which
      * events are returned to the client.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param userId          Required. The id of the user uploading the filter. The access token must be authorized to make requests for
-     *                        this user id.
-     * @param filterData      JSON body parameters.
-     * @return Status code 200: The filter was created.
+     * @param userId     Required. The id of the user uploading the filter. The access token must be authorized to make requests for
+     *                   this user id.
+     * @param filterData JSON body parameters.
+     * @return <p>Status code 200: The filter was created.</p>
      */
     @POST("/_matrix/client/r0/user/{userId}/filter")
     @Headers("Content-type: application/json")
@@ -46,13 +46,13 @@ public interface FilterApi {
 
     /**
      * Download a filter.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param userId          Required. The user ID to download a filter for.
-     * @param filterId        Required. The filter ID to download.
-     * @return Status code 200: "The filter defintion"
-     *     Status code 404: Unknown filter.
+     * @param userId   Required. The user ID to download a filter for.
+     * @param filterId Required. The filter ID to download.
+     * @return <p>Status code 200: "The filter defintion".</p>
+     * <p>Status code 404: Unknown filter.</p>
      */
     @GET("/_matrix/client/r0/user/{userId}/filter/{filterId}")
     @Headers("Content-type: application/json")

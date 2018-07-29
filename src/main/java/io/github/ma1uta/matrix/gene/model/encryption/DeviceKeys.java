@@ -51,7 +51,7 @@ public class DeviceKeys {
 
     /**
      * Required. Signatures for the device key object. A map from user ID, to a map from (algorithm):(device_id) to the signature.
-     * <p/>
+     * <br>
      * The signature is calculated using the process described at Signing JSON.
      */
     public Map<String, Map<String, String>> signatures;

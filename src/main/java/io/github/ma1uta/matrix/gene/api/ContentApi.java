@@ -67,16 +67,16 @@ public interface ContentApi {
 
     /**
      * Upload some content to the content repository.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
      * <b>Requires auth</b>: Yes.
      *
-     * @param inputStream     The file content.
-     * @param filename        The name of the file being uploaded.
-     * @param contentType     The content type of the file being uploaded.
+     * @param inputStream The file content.
+     * @param filename    The name of the file being uploaded.
+     * @param contentType The content type of the file being uploaded.
      * @return <b>Required</b>. The MXC URI to the uploaded content.
-     *     Status code 200: The MXC URI for the uploaded content.
-     *     Status code 429: This request was rate-limited.
+     * <p>Status code 200: The MXC URI for the uploaded content.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @POST("/_matrix/media/r0/upload")
     @Headers("Content-type: multipart/form-data")
@@ -84,15 +84,15 @@ public interface ContentApi {
 
     /**
      * Download content from the content repository.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
      *
-     * @param serverName      Required. The server name from the mxc:// URI (the authoritory component).
-     * @param mediaId         Required. The media ID from the mxc:// URI (the path component).
-     * @param allowRemote     Indicates to the server that it should not attempt to fetch the media if it is deemed remote.
-     *                        This is to prevent routing loops where the server contacts itself. Defaults to true if not provided.
+     * @param serverName  Required. The server name from the mxc:// URI (the authoritory component).
+     * @param mediaId     Required. The media ID from the mxc:// URI (the path component).
+     * @param allowRemote Indicates to the server that it should not attempt to fetch the media if it is deemed remote.
+     *                    This is to prevent routing loops where the server contacts itself. Defaults to true if not provided.
      * @return Response headers:
-     * <table border="1">
+     * <table border="1" summary="Response headers">
      * <tr>
      * <th>Parameter</th>
      * <th>Type</th>
@@ -109,8 +109,8 @@ public interface ContentApi {
      * <td>The name of the file that was previously uploaded, if set.</td>
      * </tr>
      * </table>
-     *     Status code 200: The content that was previously uploaded.
-     *     Status code 429: This request was rate-limited.
+     * <p>Status code 200: The content that was previously uploaded.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @GET("/_matrix/media/r0/download/{serverName}/{mediaId}")
     OutputStream download(@Path("serverName") String serverName, @Path("mediaId") String mediaId,
@@ -119,13 +119,13 @@ public interface ContentApi {
     /**
      * Download content from the content repository as a given filename.
      *
-     * @param serverName      Required. The server name from the mxc:// URI (the authoritory component).
-     * @param mediaId         Required. The media ID from the mxc:// URI (the path component).
-     * @param filename        Required. The filename to give in the Content-Disposition.
-     * @param allowRemote     Indicates to the server that it should not attempt to fetch the media if it is deemed remote.
-     *                        This is to prevent routing loops where the server contacts itself. Defaults to true if not provided.
+     * @param serverName  Required. The server name from the mxc:// URI (the authoritory component).
+     * @param mediaId     Required. The media ID from the mxc:// URI (the path component).
+     * @param filename    Required. The filename to give in the Content-Disposition.
+     * @param allowRemote Indicates to the server that it should not attempt to fetch the media if it is deemed remote.
+     *                    This is to prevent routing loops where the server contacts itself. Defaults to true if not provided.
      * @return Response headers:
-     * <table border="1">
+     * <table border="1" summary="Response headers">
      * <tr>
      * <th>Parameter</th>
      * <th>Type</th>
@@ -142,8 +142,8 @@ public interface ContentApi {
      * <td>The name of the file that was previously uploaded, if set.</td>
      * </tr>
      * </table>
-     *     Status code 200: The content that was previously uploaded.
-     *     Status code 429: This request was rate-limited.
+     * <p>Status code 200: The content that was previously uploaded.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @GET("/_matrix/media/r0/download/{serverName}/{mediaId}/{fileName}")
     OutputStream downloadFile(@Path("serverName") String serverName, @Path("mediaId") String mediaId, @Path("fileName") String filename,
@@ -152,15 +152,15 @@ public interface ContentApi {
     /**
      * Download a thumbnail of the content from the content repository.
      *
-     * @param serverName      Required. The server name from the mxc:// URI (the authoritory component).
-     * @param mediaId         Required. The media ID from the mxc:// URI (the path component)
-     * @param width           The desired width of the thumbnail. The actual thumbnail may not match the size specified.
-     * @param height          The desired height of the thumbnail. The actual thumbnail may not match the size specified.
-     * @param method          The desired resizing method. One of: ["crop", "scale"].
-     * @param allowRemote     Indicates to the server that it should not attempt to fetch the media if it is deemed remote.
-     *                        This is to prevent routing loops where the server contacts itself. Defaults to true if not provided.
+     * @param serverName  Required. The server name from the mxc:// URI (the authoritory component).
+     * @param mediaId     Required. The media ID from the mxc:// URI (the path component)
+     * @param width       The desired width of the thumbnail. The actual thumbnail may not match the size specified.
+     * @param height      The desired height of the thumbnail. The actual thumbnail may not match the size specified.
+     * @param method      The desired resizing method. One of: ["crop", "scale"].
+     * @param allowRemote Indicates to the server that it should not attempt to fetch the media if it is deemed remote.
+     *                    This is to prevent routing loops where the server contacts itself. Defaults to true if not provided.
      * @return Response headers:
-     * <table border="1">
+     * <table border="1" summary="Response headers">
      * <tr>
      * <th>Parameter</th>
      * <th>Type</th>
@@ -172,8 +172,8 @@ public interface ContentApi {
      * <td>The content type of the file that was previously uploaded.</td>
      * </tr>
      * </table>
-     *     Status code 200: The content that was previously uploaded.
-     *     Status code 429: This request was rate-limited.
+     * <p>Status code 200: The content that was previously uploaded.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @GET("/_matrix/media/r0/thumbnail/{serverName}/{mediaId}")
     OutputStream thumbnail(@Path("serverName") String serverName, @Path("mediaId") String mediaId, @Query("width") Long width,
@@ -182,11 +182,11 @@ public interface ContentApi {
     /**
      * Get information about a PATH for a client.
      *
-     * @param url             Required. The PATH to get a preview of.
-     * @param ts              The preferred point in time to return a preview for. The server may return a newer version if it does not
-     *                        have the requested version available.
+     * @param url Required. The PATH to get a preview of.
+     * @param ts  The preferred point in time to return a preview for. The server may return a newer version if it does not
+     *            have the requested version available.
      * @return Response headers:
-     * <table border="1">
+     * <table border="1" summary="Response headers.">
      * <tr>
      * <th>Parameter</th>
      * <th>Type</th>
@@ -203,8 +203,8 @@ public interface ContentApi {
      * <td>An MXC URI to the image. Omitted if there is no image.</td>
      * </tr>
      * </table>
-     *     Status code 200: The content that was previously uploaded.
-     *     Status code 429: This request was rate-limited.
+     * <p>Status code 200: The content that was previously uploaded.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @GET("/_matrix/media/r0/preview_url")
     Map<String, String> previewUrl(@Query("url") String url, @Query("ts") String ts);
@@ -213,16 +213,16 @@ public interface ContentApi {
      * This endpoint allows clients to retrieve the configuration of the content repository, such as upload limitations.
      * Clients SHOULD use this as a guide when using content repository endpoints. All values are intentionally left optional.
      * Clients SHOULD follow the advice given in the field description when the field is not available.
-     * <p/>
+     * <br>
      * NOTE: Both clients and server administrators should be aware that proxies between the client and the server may affect
      * the apparent behaviour of content repository APIs, for example, proxies may enforce a lower upload size limit than is
      * advertised by the server on this endpoint.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
      * <b>Requires auth</b>: Yes.
      *
-     * @return Status code 200: The public content repository configuration for the matrix server.
-     *     Status code 429: This request was rate-limited.
+     * @return <p>Status code 200: The public content repository configuration for the matrix server.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @GET("/_matrix/media/r0")
     ContentConfig config();

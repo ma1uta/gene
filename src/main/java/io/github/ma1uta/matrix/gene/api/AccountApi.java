@@ -61,13 +61,12 @@ public interface AccountApi {
      * @param kind            The kind of account to register. Defaults to user. One of: ["guest", "user"].
      * @param registerRequest JSON body parameters.
      * @return <p>Status code 200: The account has been registered.</p>
-     * <p>Status code 400: Part of the request was invalid. This may include one of the following error codes:
+     * <p>Status code 400: Part of the request was invalid. This may include one of the following error codes:</p>
      * <ul>
      * <li>M_USER_IN_USE : The desired user ID is already taken.</li>
      * <li>M_INVALID_USERNAME : The desired user ID is not a valid user name.</li>
      * <li>M_EXCLUSIVE : The desired user ID is in the exclusive namespace claimed by an application service.</li>
      * </ul>
-     * </p>
      * <p>
      * These errors may be returned at any stage of the registration process, including after authentication
      * if the requested user ID was registered whilst the client was performing authentication.
@@ -79,7 +78,6 @@ public interface AccountApi {
      * </p>
      * <p>Status code 401: The homeserver requires additional authentication information.</p>
      * <p>Status code 429: This request was rate-limited.</p>
-     * @see <a href="https://matrix.org/docs/spec/client_server/r0.3.0.html#id147">Register for an account on this homeserver.</a>
      */
     @POST("/_matrix/client/r0/register")
     @Headers("Content-type: application/json")
@@ -93,7 +91,7 @@ public interface AccountApi {
      * @param requestToken request.
      * @return <p>Status code 200: An email has been sent to the specified address. Note that this may be an email containing the
      * validation token or it may be informing the user of an error.</p>
-     * <p>Status code 400: Part of the request was invalid. This may include one of the following error codes:
+     * <p>Status code 400: Part of the request was invalid. This may include one of the following error codes:</p>
      * <ul>
      * <li>M_THREEPID_IN_USE : The email address is already registered to an account on this server.
      * However, if the home server has the ability to send email, it is recommended that the server instead send an email to
@@ -101,7 +99,6 @@ public interface AccountApi {
      * if a given email address has an account on the Home Server in question.</li>
      * <li>M_SERVER_NOT_TRUSTED : The id_server parameter refers to an ID server that is not trusted by this Home Server.</li>
      * </ul>
-     * </p>
      */
     @POST("/_matrix/client/r0/register/email/requestToken")
     @Headers("Content-type: application/json")
@@ -109,11 +106,11 @@ public interface AccountApi {
 
     /**
      * Changes the password for an account on this homeserver.
-     * <p/>
+     * <br>
      * This API endpoint uses the User-Interactive Authentication API.
-     * <p/>
+     * <br>
      * An access token should be submitted to this endpoint if the client has an active session.
-     * <p/>
+     * <br>
      * The homeserver may change the flows available depending on whether a valid access token is provided.
      *
      * @param passwordRequest password.
@@ -133,7 +130,7 @@ public interface AccountApi {
      * address could be found. The server may instead send an email to the given address prompting the user to create an account.
      * M_THREEPID_IN_USE may not be returned.
      *
-     * @return Status code 200: An email was sent to the given address.
+     * @return <p>Status code 200: An email was sent to the given address.</p>
      */
     @POST("/_matrix/client/r0/account/password/email/requestToken")
     @Headers("Content-type: application/json")
@@ -141,11 +138,11 @@ public interface AccountApi {
 
     /**
      * Deactivate the user's account, removing all ability for the user to login again.
-     * <p/>
+     * <br>
      * This API endpoint uses the User-Interactive Authentication API.
-     * <p/>
+     * <br>
      * An access token should be submitted to this endpoint if the client has an active session.
-     * <p/>
+     * <br>
      * The homeserver may change the flows available depending on whether a valid access token is provided.
      *
      * @param deactivateRequest request.
@@ -159,27 +156,27 @@ public interface AccountApi {
 
     /**
      * Checks to see if a username is available, and valid, for the server.
-     * <p/>
+     * <br>
      * The server should check to ensure that, at the time of the request, the username requested is available for use.
      * This includes verifying that an application service has not claimed the username and that the username fits the server's
      * desired requirements (for example, a server could dictate that it does not permit usernames with underscores).
-     * <p/>
+     * <br>
      * Matrix clients may wish to use this API prior to attempting registration, however the clients must also be aware
      * that using this API does not normally reserve the username. This can mean that the username becomes unavailable
      * between checking its availability and attempting to register it.
-     * <p/>
+     * <br>
      * <b>Rate-limited</b>: Yes.
      *
      * @param username Required. The username to check the availability of.
      * @return Status code 200: The username is available.
-     *     Status code 400: Part of the request was invalid or the username is not available. This may include one of the following error
-     *     codes:
-     *     <ul>
-     *     <li>M_USER_IN_USE : The desired username is already taken.</li>
-     *     <li>M_INVALID_USERNAME : The desired username is not a valid user name.</li>
-     *     <li>M_EXCLUSIVE : The desired username is in the exclusive namespace claimed by an application service.</li>
-     *     </ul>
-     *     Status code 429: This request was rate-limited.
+     * <p>Status code 400: Part of the request was invalid or the username is not available. This may include one of the following error
+     * codes:</p>
+     * <ul>
+     * <li>M_USER_IN_USE : The desired username is already taken.</li>
+     * <li>M_INVALID_USERNAME : The desired username is not a valid user name.</li>
+     * <li>M_EXCLUSIVE : The desired username is in the exclusive namespace claimed by an application service.</li>
+     * </ul>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @GET("/_matrix/client/r0/register/available")
     @Headers("Content-type: application/json")
@@ -187,13 +184,13 @@ public interface AccountApi {
 
     /**
      * Gets a list of the third party identifiers that the homeserver has associated with the user's account.
-     * <p/>
+     * <br>
      * This is not the same as the list of third party identifiers bound to the user's Matrix ID in Identity Servers.
-     * <p/>
+     * <br>
      * Identifiers in this list may be used by the homeserver as, for example, identifiers that it will accept to reset the user's
      * account password.
      *
-     * @return Status code 200: The lookup was successful.
+     * @return <p>Status code 200: The lookup was successful.</p>
      */
     @GET("/_matrix/client/r0/account/3pid")
     @Headers("Content-type: application/json")
@@ -215,7 +212,7 @@ public interface AccountApi {
      * associated with an account on this Home Server. This API should be used to request validation tokens when adding an email
      * address to an account. This API's parameters and response is identical to that of the HS API /register/email/requestToken endpoint.
      *
-     * @return Status code 200: An email was sent to the given address.
+     * @return <p>Status code 200: An email was sent to the given address.</p>
      */
     @POST("/_matrix/client/r0/account/3pid/email/requestToken")
     @Headers("Content-type: application/json")
@@ -223,15 +220,15 @@ public interface AccountApi {
 
     /**
      * Gets information about the owner of a given access token.
-     * <p/>
+     * <br>
      * Note that, as with the rest of the Client-Server API, Application Services may masquerade as users within their namespace
      * by giving a user_id query parameter. In this situation, the server should verify that the given user_id is registered by
      * the appservice, and return it in the response body.
      *
-     * @return Status code 200: The token belongs to a known user.
-     *     Status code 401: The token is not recognised.
-     *     Status code 403: The appservice cannot masquerade as the user or has not registered them.
-     *     Status code 429: This request was rate-limited.
+     * @return <p>Status code 200: The token belongs to a known user.</p>
+     * <p>Status code 401: The token is not recognised.</p>
+     * <p>Status code 403: The appservice cannot masquerade as the user or has not registered them.</p>
+     * <p>Status code 429: This request was rate-limited.</p>
      */
     @GET("/_matrix/client/r0/account/whoami")
     @Headers("Content-type: application/json")

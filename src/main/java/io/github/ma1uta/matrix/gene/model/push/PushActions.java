@@ -25,7 +25,7 @@ public class PushActions {
 
     /**
      * Required. The action(s) to perform for this rule.
-     * <p/>
+     * <br>
      * One of: ["notify", "dont_notify", "coalesce", "set_tweak"].
      */
     public List<String> actions;

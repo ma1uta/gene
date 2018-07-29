@@ -40,7 +40,7 @@ public interface ThirdPartyProtocolApi {
      * Fetches the overall metadata about protocols supported by the homeserver. Includes both the available protocols and all
      * fields required for queries against each protocol.
      *
-     * @return Status code 200: The protocols supported by the homeserver.
+     * @return <p>Status code 200: The protocols supported by the homeserver.</p>
      */
     @GET("/_matrix/client/r0/thirdparty/protocols")
     @Headers("Content-type: application/json")
@@ -50,8 +50,8 @@ public interface ThirdPartyProtocolApi {
      * Fetches the metadata from the homeserver about a particular third party protocol.
      *
      * @param protocol Required. The name of the protocol.
-     * @return Status code 200: The protocol was found and metadata returned.
-     *     Status code 404: The protocol is unknown.
+     * @return <p>Status code 200: The protocol was found and metadata returned.</p>
+     * <p>Status code 404: The protocol is unknown.</p>
      */
     @GET("/_matrix/client/r0/thirdparty/protocol/{protocol}")
     @Headers("Content-type: application/json")
@@ -66,8 +66,8 @@ public interface ThirdPartyProtocolApi {
      *
      * @param protocol     Required. The protocol used to communicate to the third party network.
      * @param searchFields One or more custom fields to help identify the third party location.
-     * @return Status code 200: At least one portal room was found.
-     *     Status code 404: No portal rooms were found.
+     * @return <p>Status code 200: At least one portal room was found.</p>
+     * <p>Status code 404: No portal rooms were found.</p>
      */
     @GET("/_matrix/client/r0/thirdparty/location/{protocol}")
     @Headers("Content-type: application/json")
@@ -78,8 +78,8 @@ public interface ThirdPartyProtocolApi {
      *
      * @param protocol Required. The name of the protocol.
      * @param params   query params.
-     * @return Status code 200: The Matrix User IDs found with the given parameters.
-     *     Status code 404: The Matrix User ID was not found.
+     * @return <p>Status code 200: The Matrix User IDs found with the given parameters.</p>
+     * <p>Status code 404: The Matrix User ID was not found.</p>
      */
     @GET("/_matrix/client/r0/thirdparty/user/{protocol}")
     @Headers("Content-type: application/json")
@@ -89,8 +89,8 @@ public interface ThirdPartyProtocolApi {
      * Retreive an array of third party network locations from a Matrix room alias.
      *
      * @param alias Required. The Matrix room alias to look up.
-     * @return Status code 200: At least one portal room was found.
-     *     Status code 404: No portal rooms were found.
+     * @return <p>Status code 200: At least one portal room was found.</p>
+     * <p>Status code 404: No portal rooms were found.</p>
      */
     @GET("/_matrix/client/r0/thirdparty/location")
     @Headers("Content-type: application/json")
@@ -100,8 +100,8 @@ public interface ThirdPartyProtocolApi {
      * Retreive an array of third party users from a Matrix User ID.
      *
      * @param userId Required. The Matrix User ID to look up.
-     * @return Status code 200: The Matrix User IDs found with the given parameters.
-     *     Status code 404: The Matrix User ID was not found.
+     * @return <p>Status code 200: The Matrix User IDs found with the given parameters.</p>
+     * <p>Status code 404: The Matrix User ID was not found.</p>
      */
     @GET("/_matrix/client/r0/thirdparty/user")
     @Headers("Content-type: application/json")

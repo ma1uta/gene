@@ -26,20 +26,20 @@ import retrofit2.http.Path;
 /**
  * Users may encounter content which they find inappropriate and should be able to report it to the server administrators or room
  * moderators for review. This module defines a way for users to report content.
- * <p/>
+ * <br>
  * Content is reported based upon a negative score, where -100 is "most offensive" and 0 is "inoffensive".
  */
 public interface ReportApi {
 
     /**
      * Reports an event as inappropriate to the server, which may then notify the appropriate people.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
      * @param roomId        Required. The room in which the event being reported is located.
      * @param eventId       Required. The event to report.
      * @param reportRequest JSON body request.
-     * @return Status code 200: The event has been reported successfully.
+     * @return <p>Status code 200: The event has been reported successfully.</p>
      */
     @POST("/_matrix/client/r0/rooms/{roomId}/report/{eventId}")
     @Headers("Content-type: application/json")

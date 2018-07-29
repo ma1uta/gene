@@ -74,7 +74,7 @@ public class CreateRoomRequest {
     /**
      * A list of state events to set in the new room. This allows the user to override the default state events set in the new room.
      * The expected format of the state events are an object with type, state_key and content keys set.
-     * <p/>
+     * <br>
      * Takes precedence over events set by preset, but gets overriden by name and topic keys.
      */
     @SerializedName("initial_event")

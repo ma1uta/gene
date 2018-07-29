@@ -21,9 +21,9 @@ import retrofit2.http.GET;
 
 /**
  * Gets the versions of the specification supported by the server.
- * <p/>
+ * <br>
  * Values will take the form rX.Y.Z.
- * <p/>
+ * <br>
  * Only the latest Z value will be reported for each supported X.Y value.
  * i.e. if the server implements r0.0.0, r0.0.1, and r1.2.0, it will report r0.0.1 and r1.2.0.
  */
@@ -32,7 +32,7 @@ public interface VersionApi {
     /**
      * Gets the versions of the specification supported by the server.
      *
-     * @return Status code 200: The versions supported by the server.
+     * @return <p>Status code 200: The versions supported by the server.</p>
      */
     @GET("/_matrix/client/versions")
     VersionsResponse versions();

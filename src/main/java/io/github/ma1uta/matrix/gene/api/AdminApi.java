@@ -30,7 +30,7 @@ public interface AdminApi {
      * privileges are not specified in this document.
      *
      * @param userId Required. The user to look up.
-     * @return Status code 200: The lookup was successful.
+     * @return <p>Status code 200: The lookup was successful.</p>
      */
     @GET("/_matrix/client/r0/admin/whois/{userId}")
     AdminResponse whois(@Path("userId") String userId);

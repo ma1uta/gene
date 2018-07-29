@@ -37,11 +37,11 @@ public interface EncryptionApi {
 
     /**
      * Publishes end-to-end encryption keys for the device.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param uploadRequest   JSON body parameters.
-     * @return Status code 200: The provided keys were sucessfully uploaded.
+     * @param uploadRequest JSON body parameters.
+     * @return <p>Status code 200: The provided keys were sucessfully uploaded.</p>
      */
     @POST("/_matrix/client/r0/keys/upload")
     @Headers("Content-type: application/json")
@@ -49,11 +49,11 @@ public interface EncryptionApi {
 
     /**
      * Returns the current devices and identity keys for the given users.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param queryRequest    JSON body parameters.
-     * @return Status code 200: The device information.
+     * @param queryRequest JSON body parameters.
+     * @return <p>Status code 200: The device information.</p>
      */
     @POST("/_matrix/client/r0/keys/query")
     @Headers("Content-type: application/json")
@@ -61,11 +61,11 @@ public interface EncryptionApi {
 
     /**
      * Claims one-time keys for use in pre-key messages.
-     * <p/>
+     * <br>
      * <b>Requires auth</b>: Yes.
      *
-     * @param claimRequest    JSON body parameters.
-     * @return Status code 200: The claimed keys.
+     * @param claimRequest JSON body parameters.
+     * @return <p>Status code 200: The claimed keys.</p>
      */
     @POST("/_matrix/client/r0/keys/claim")
     @Headers("Content-type: application/json")
@@ -73,21 +73,21 @@ public interface EncryptionApi {
 
     /**
      * Gets a list of users who have updated their device identity keys since a previous sync token.
-     * <p/>
+     * <br>
      * The server should include in the results any users who:
      * <ul>
      * <li>currently share a room with the calling user (ie, both users have membership state join); and</li>
      * <li>added new device identity keys or removed an existing device with identity keys, between from and to.</li>
      * </ul>
-     * Requires auth: Yes.
+     * <b>Requires auth</b>: Yes.
      *
-     * @param from            Required. The desired start point of the list. Should be the next_batch field from a response to an earlier
-     *                        call to /sync. Users who have not uploaded new device identity keys since this point, nor deleted existing
-     *                        devices with identity keys since then, will be excluded from the results.
-     * @param to              Required. The desired end point of the list. Should be the next_batch field from a recent call to /sync -
-     *                        typically the most recent such call. This may be used by the server as a hint to check its caches are up to
-     *                        date.
-     * @return Status code 200: The list of users who updated their devices.
+     * @param from Required. The desired start point of the list. Should be the next_batch field from a response to an earlier
+     *             call to /sync. Users who have not uploaded new device identity keys since this point, nor deleted existing
+     *             devices with identity keys since then, will be excluded from the results.
+     * @param to   Required. The desired end point of the list. Should be the next_batch field from a recent call to /sync -
+     *             typically the most recent such call. This may be used by the server as a hint to check its caches are up to
+     *             date.
+     * @return <p>Status code 200: The list of users who updated their devices.</p>
      */
     @GET("/_matrix/client/r0/keys/changes")
     @Headers("Content-type: application/json")
