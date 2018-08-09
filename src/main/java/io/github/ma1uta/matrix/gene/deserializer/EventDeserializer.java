@@ -68,6 +68,8 @@ import io.github.ma1uta.matrix.gene.model.common.events.CallHangup;
 import io.github.ma1uta.matrix.gene.model.common.events.CallInvite;
 import io.github.ma1uta.matrix.gene.model.common.events.Direct;
 import io.github.ma1uta.matrix.gene.model.common.events.IgnoredUserList;
+import io.github.ma1uta.matrix.gene.model.common.events.RawEvent;
+import io.github.ma1uta.matrix.gene.model.common.events.RawMessage;
 import io.github.ma1uta.matrix.gene.model.common.events.Receipt;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomAliases;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomAvatar;
@@ -236,7 +238,7 @@ public class EventDeserializer implements JsonDeserializer<Event> {
             case TYPING:
                 return context.deserialize(jsonElement, Typing.class);
             default:
-                throw new JsonParseException("Unknown event type: " + type);
+                return new RawEvent(jsonElement);
         }
     }
 
@@ -266,7 +268,7 @@ public class EventDeserializer implements JsonDeserializer<Event> {
             case VIDEO:
                 return context.deserialize(jsonElement, Video.class);
             default:
-                throw new JsonParseException("Unknown msgtype: " + msgtype);
+                return new RawMessage(object);
         }
     }
 
