@@ -18,6 +18,7 @@ package io.github.ma1uta.matrix.gene.model.common.events;
 
 import com.google.gson.annotations.SerializedName;
 import io.github.ma1uta.matrix.gene.model.common.EventContent;
+import io.github.ma1uta.matrix.gene.model.common.events.nested.Notifications;
 
 import java.util.Map;
 
@@ -106,4 +107,9 @@ public class RoomPowerLevels implements EventContent {
      */
     @SerializedName("users_default")
     public Byte usersDefault = DEFAULT_LOW_LEVEL;
+
+    /**
+     * The power level requirements for specific notification types. This is a mapping from key to power level for that notifications key.
+     */
+    public Notifications notifications;
 }

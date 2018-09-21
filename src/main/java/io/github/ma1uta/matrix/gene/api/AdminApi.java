@@ -18,6 +18,7 @@ package io.github.ma1uta.matrix.gene.api;
 
 import io.github.ma1uta.matrix.gene.model.admin.AdminResponse;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Path;
 
 /**
@@ -33,5 +34,6 @@ public interface AdminApi {
      * @return <p>Status code 200: The lookup was successful.</p>
      */
     @GET("/_matrix/client/r0/admin/whois/{userId}")
+    @Headers("Content-type: application/json")
     AdminResponse whois(@Path("userId") String userId);
 }

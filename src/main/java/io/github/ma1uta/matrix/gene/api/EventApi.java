@@ -50,7 +50,7 @@ public interface EventApi {
      */
     @GET("/_matrix/client/r0/rooms/{roomId}/event/{eventId}")
     @Headers("Content-type: application/json")
-    Event singleEvent(@Path("roomId") String roomId, @Path("eventId") String eventId);
+    Event roomEvent(@Path("roomId") String roomId, @Path("eventId") String eventId);
 
     /**
      * Looks up the contents of a state event in a room. If the user is joined to the room then the state is taken from the current
@@ -67,7 +67,7 @@ public interface EventApi {
      */
     @GET("/_matrix/client/r0/rooms/{roomId}/state/{eventType}/{stateKey}")
     @Headers("Content-type: application/json")
-    Map<String, Object> eventsForRoomWithTypeAndState(@Path("roomId") String roomId, @Path("eventType") String eventType,
+    Map<String, Object> roomEventWithTypeAndState(@Path("roomId") String roomId, @Path("eventType") String eventType,
                                                       @Path("stateKey") String stateKey);
 
     /**
@@ -86,7 +86,7 @@ public interface EventApi {
      */
     @GET("/_matrix/client/r0/rooms/{roomId}/state/{eventType}")
     @Headers("Content-type: application/json")
-    Map<String, Object> eventsForRoomWithType(@Path("roomId") String roomId, @Path("eventType") String eventType);
+    Map<String, Object> roomEventWithType(@Path("roomId") String roomId, @Path("eventType") String eventType);
 
     /**
      * Get the state events for the current state of a room.
@@ -99,7 +99,7 @@ public interface EventApi {
      */
     @GET("/_matrix/client/r0/rooms/{roomId}/state")
     @Headers("Content-type: application/json")
-    List<Event> eventsForRoom(@Path("roomId") String roomId);
+    List<Event> roomEvents(@Path("roomId") String roomId);
 
     /**
      * Get the list of members for this room.

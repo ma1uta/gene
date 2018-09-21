@@ -17,10 +17,9 @@
 package io.github.ma1uta.matrix.gene.model.common.events;
 
 import io.github.ma1uta.matrix.gene.model.common.EventContent;
-import io.github.ma1uta.matrix.gene.model.common.events.nested.ReceiptTs;
+import io.github.ma1uta.matrix.gene.model.common.events.nested.Receipts;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A map of which rooms are considered 'direct' rooms for specific users is kept in account_data in an event of type m.direct.
@@ -29,5 +28,5 @@ import java.util.Map;
  * <br>
  * Map EVENT_ID -&gt; 'm.read' -&gt; USER_ID -&gt; ts: long
  */
-public class Receipt extends HashMap<String, Map<String, Map<String, ReceiptTs>>> implements EventContent {
+public class Receipt extends HashMap<String, Receipts> implements EventContent {
 }

@@ -58,7 +58,7 @@ public interface ProfileApi {
      */
     @GET("/_matrix/client/r0/profile/{userId}/displayname")
     @Headers("Content-type: application/json")
-    DisplayName showDisplayName(@Path("userId") String userId);
+    DisplayName getDisplayName(@Path("userId") String userId);
 
     /**
      * This API sets the given user's avatar URL. You must have permission to set this user's avatar URL, e.g. you need to have
@@ -87,7 +87,7 @@ public interface ProfileApi {
      */
     @GET("/_matrix/client/r0/profile/{userId}/avatar_url")
     @Headers("Content-type: application/json")
-    AvatarUrl showAvatarUrl(@Path("userId") String userId);
+    AvatarUrl getAvatarUrl(@Path("userId") String userId);
 
     /**
      * Get the combined profile information for this user. This API may be used to fetch the user's own profile information or

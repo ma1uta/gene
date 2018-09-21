@@ -14,30 +14,40 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events;
+package io.github.ma1uta.matrix.gene.model.common.events.nested;
 
 import com.google.gson.annotations.SerializedName;
-import io.github.ma1uta.matrix.gene.model.common.EventContent;
+
+import java.util.List;
 
 /**
- * This is the first event in a room and cannot be changed. It acts as the root of all other events.
+ * JWK.
  */
-public class RoomCreate implements EventContent {
+public class JWK {
 
     /**
-     * Required. The user_id of the room creator. This is set by the homeserver.
+     * Required. Key type. Must be oct.
      */
-    public String creator;
+    public String key;
 
     /**
-     * Whether users on other servers can join this room. Defaults to ``true`` if key does not exist.
+     * Required. Key operations. Must at least contain encrypt and decrypt.
      */
-    @SerializedName("m.federate")
-    public Boolean federate;
+    @SerializedName("key_opts")
+    public List<String> keyOpts;
 
     /**
-     * The version of the room. Defaults to "1" if the key does not exist.
+     * Required. Algorithm. Must be A256CTR.
      */
-    @SerializedName("room_version")
-    public String roomVersion;
+    public String alg;
+
+    /**
+     * Required. The key, encoded as urlsafe unpadded base64.
+     */
+    public String k;
+
+    /**
+     * Required. Extractable. Must be true. This is a W3C extension.
+     */
+    public Boolean ext;
 }

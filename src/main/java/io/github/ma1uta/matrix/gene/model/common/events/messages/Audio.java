@@ -19,6 +19,7 @@ package io.github.ma1uta.matrix.gene.model.common.events.messages;
 import io.github.ma1uta.matrix.gene.model.common.Event;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomMessage;
 import io.github.ma1uta.matrix.gene.model.common.events.nested.AudioInfo;
+import io.github.ma1uta.matrix.gene.model.common.events.nested.EncryptedFile;
 
 /**
  * This message represents a single audio clip.
@@ -34,6 +35,11 @@ public class Audio extends RoomMessage {
      * Required. The URL to the audio clip.
      */
     public String url;
+
+    /**
+     * Required if the file is encrypted. Information on the encrypted file, as specified in End-to-end encryption.
+     */
+    public EncryptedFile file;
 
     @Override
     public String getMsgtype() {

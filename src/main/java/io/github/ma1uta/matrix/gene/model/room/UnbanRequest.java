@@ -14,19 +14,18 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events.messages;
+package io.github.ma1uta.matrix.gene.model.room;
 
-import io.github.ma1uta.matrix.gene.model.common.Event;
+import com.google.gson.annotations.SerializedName;
 
 /**
- * This message is similar to m.text except that the sender is 'performing' the action contained in the body key, similar to /me in IRC.
- * This message should be prefixed by the name of the sender. This message could also be represented in a different colour to distinguish
- * it from regular m.text messages.
+ * Unban JSON body request.
  */
-public class Emote extends FormattedBody {
+public class UnbanRequest {
 
-    @Override
-    public String getMsgtype() {
-        return Event.MessageType.EMOTE;
-    }
+    /**
+     * Required. The fully qualified user ID of the user being unbanned.
+     */
+    @SerializedName("user_id")
+    public String userId;
 }

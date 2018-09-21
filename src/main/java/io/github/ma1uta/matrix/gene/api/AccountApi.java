@@ -18,9 +18,10 @@ package io.github.ma1uta.matrix.gene.api;
 
 import io.github.ma1uta.matrix.gene.model.account.AvailableResponse;
 import io.github.ma1uta.matrix.gene.model.account.DeactivateRequest;
+import io.github.ma1uta.matrix.gene.model.account.EmailRequestToken;
 import io.github.ma1uta.matrix.gene.model.account.PasswordRequest;
+import io.github.ma1uta.matrix.gene.model.account.PhoneRequestToken;
 import io.github.ma1uta.matrix.gene.model.account.RegisterRequest;
-import io.github.ma1uta.matrix.gene.model.account.RequestToken;
 import io.github.ma1uta.matrix.gene.model.account.ThreePidRequest;
 import io.github.ma1uta.matrix.gene.model.account.ThreePidResponse;
 import io.github.ma1uta.matrix.gene.model.account.WhoamiResponse;
@@ -84,11 +85,11 @@ public interface AccountApi {
     LoginResponse register(@Query("kind") String kind, @Body RegisterRequest registerRequest);
 
     /**
-     * Proxies the identity server API validate/email/requestToken, but first checks that the given email address is not already
+     * Proxies the identity server API validate/email/EmailRequestToken, but first checks that the given email address is not already
      * associated with an account on this Home Server. Note that, for consistency, this API takes JSON objects, though the
      * Identity Server API takes x-www-form-urlencoded parameters. See the Identity Server API for further information.
      *
-     * @param requestToken request.
+     * @param emailRequestToken request.
      * @return <p>Status code 200: An email has been sent to the specified address. Note that this may be an email containing the
      * validation token or it may be informing the user of an error.</p>
      * <p>Status code 400: Part of the request was invalid. This may include one of the following error codes:</p>
@@ -102,7 +103,28 @@ public interface AccountApi {
      */
     @POST("/_matrix/client/r0/register/email/requestToken")
     @Headers("Content-type: application/json")
-    EmptyResponse requestToken(@Body RequestToken requestToken);
+    EmptyResponse emailRequestToken(@Body EmailRequestToken emailRequestToken);
+
+    /**
+     * Proxies the Identity Service API validate/msisdn/EmailRequestToken, but first checks that the given phone number is not already
+     * associated with an account on this homeserver. See the Identity Service API for further information.
+     *
+     * @param emailRequestToken request.
+     * @return <p>Status code 200: An SMS message has been sent to the specified phone number. Note that this may be an SMS message
+     * containing
+     * the validation token or it may be informing the user of an error.</p>
+     * <p>Status code 400: Part of the request was invalid. This may include one of the following error codes:</p>
+     * <ul>
+     * <li>M_THREEPID_IN_USE : The phone number is already registered to an account on this server.
+     * However, if the homeserver has the ability to send SMS message, it is recommended that the server instead send an SMS message
+     * to the user with instructions on how to reset their password. This prevents malicious parties from being able to determine
+     * if a given phone number has an account on the homeserver in question.</li>
+     * <li>M_SERVER_NOT_TRUSTED : The id_server parameter refers to an identity server that is not trusted by this homeserver.</li>
+     * </ul>
+     */
+    @POST("/_matrix/client/r0/register/msisdn/requestToken")
+    @Headers("Content-type: application/json")
+    EmptyResponse phoneRequestToken(@Body PhoneRequestToken emailRequestToken);
 
     /**
      * Changes the password for an account on this homeserver.
@@ -130,11 +152,30 @@ public interface AccountApi {
      * address could be found. The server may instead send an email to the given address prompting the user to create an account.
      * M_THREEPID_IN_USE may not be returned.
      *
+     * @param requestToken request.
      * @return <p>Status code 200: An email was sent to the given address.</p>
+     * <p>Status code 400: The referenced third party identifier is not recognised by the homeserver, or the request was invalid</p>
+     * <p>Status code 403: The homeserver does not allow the third party identifier as a contact option.</p>
      */
     @POST("/_matrix/client/r0/account/password/email/requestToken")
     @Headers("Content-type: application/json")
-    EmptyResponse passwordRequestToken();
+    EmptyResponse passwordEmailRequestToken(@Body EmailRequestToken requestToken);
+
+    /**
+     * Proxies the Identity Service API validate/msisdn/requestToken, but first checks that the given phone number is associated
+     * with an account on this homeserver. This API should be used to request validation tokens when authenticating for the
+     * account/password endpoint. This API's parameters and response are identical to that of the HS API /register/msisdn/requestToken
+     * except that M_THREEPID_NOT_FOUND may be returned if no account matching the given phone number could be found. The server may
+     * instead send an SMS message to the given address prompting the user to create an account. M_THREEPID_IN_USE may not be returned.
+     *
+     * @param requestToken request.
+     * @return <p>Status code 200: An SMS message was sent to the given phone number.</p>
+     * <p>Status code 400: The referenced third party identifier is not recognised by the homeserver, or the request was invalid</p>
+     * <p>Status code 403: The homeserver does not allow the third party identifier as a contact option.</p>
+     */
+    @POST("/_matrix/client/r0/account/password/msisdn/requestToken")
+    @Headers("Content-type: application/json")
+    EmptyResponse passwordPhoneRequestToken(@Body PhoneRequestToken requestToken);
 
     /**
      * Deactivate the user's account, removing all ability for the user to login again.
@@ -212,11 +253,28 @@ public interface AccountApi {
      * associated with an account on this Home Server. This API should be used to request validation tokens when adding an email
      * address to an account. This API's parameters and response is identical to that of the HS API /register/email/requestToken endpoint.
      *
+     * @param requestToken request.
      * @return <p>Status code 200: An email was sent to the given address.</p>
+     * <p>Status code 400: The referenced third party identifier is not recognised by the homeserver, or the request was invalid</p>
+     * <p>Status code 403: The homeserver does not allow the third party identifier as a contact option.</p>
      */
     @POST("/_matrix/client/r0/account/3pid/email/requestToken")
     @Headers("Content-type: application/json")
-    EmptyResponse threePidRequestToken();
+    EmptyResponse threePidEmailRequestToken(@Body EmailRequestToken requestToken);
+
+    /**
+     * Proxies the Identity Service API validate/msisdn/requestToken, but first checks that the given phone number is not already
+     * associated with an account on this homeserver. This API should be used to request validation tokens when adding a phone number
+     * to an account. This API's parameters and response are identical to that of the /register/msisdn/requestToken endpoint.
+     *
+     * @param requestToken request.
+     * @return <p>Status code 200: An SMS message was sent to the given phone number.</p>
+     * <p>Status code 400: The referenced third party identifier is not recognised by the homeserver, or the request was invalid</p>
+     * <p>Status code 403: The homeserver does not allow the third party identifier as a contact option.</p>
+     */
+    @POST("/_matrix/client/r0/account/3pid/msisdn/requestToken")
+    @Headers("Content-type: application/json")
+    EmailRequestToken threePidPhoneRequestToken(@Body PhoneRequestToken requestToken);
 
     /**
      * Gets information about the owner of a given access token.

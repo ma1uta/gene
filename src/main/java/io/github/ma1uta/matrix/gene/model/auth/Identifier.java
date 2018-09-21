@@ -14,19 +14,17 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events.messages;
-
-import io.github.ma1uta.matrix.gene.model.common.Event;
+package io.github.ma1uta.matrix.gene.model.auth;
 
 /**
- * This message is similar to m.text except that the sender is 'performing' the action contained in the body key, similar to /me in IRC.
- * This message should be prefixed by the name of the sender. This message could also be represented in a different colour to distinguish
- * it from regular m.text messages.
+ * Some authentication mechanisms use a user identifier object to identify a user. The user identifier object has a type field
+ * to indicate the type of identifier being used, and depending on the type, has other fields giving the information required
+ * to identify the user.
  */
-public class Emote extends FormattedBody {
+public abstract class Identifier {
 
-    @Override
-    public String getMsgtype() {
-        return Event.MessageType.EMOTE;
-    }
+    /**
+     * Identifier type.
+     */
+    public String type;
 }

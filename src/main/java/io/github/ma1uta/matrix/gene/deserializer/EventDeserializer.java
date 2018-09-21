@@ -21,6 +21,7 @@ import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.CALL_CAN
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.CALL_HANGUP;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.CALL_INVITE;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.DIRECT;
+import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.FULLY_READ;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.IGNORED_USER_LIST;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.PRESENCE;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.RECEIPT;
@@ -33,7 +34,6 @@ import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_HIS
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_JOIN_RULES;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_MEMBER;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_MESSAGE;
-import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_MESSAGE_FEEDBACK;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_NAME;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_PINNED_EVENTS;
 import static io.github.ma1uta.matrix.gene.model.common.Event.EventType.ROOM_POWER_LEVELS;
@@ -67,6 +67,7 @@ import io.github.ma1uta.matrix.gene.model.common.events.CallCandidates;
 import io.github.ma1uta.matrix.gene.model.common.events.CallHangup;
 import io.github.ma1uta.matrix.gene.model.common.events.CallInvite;
 import io.github.ma1uta.matrix.gene.model.common.events.Direct;
+import io.github.ma1uta.matrix.gene.model.common.events.FullyRead;
 import io.github.ma1uta.matrix.gene.model.common.events.IgnoredUserList;
 import io.github.ma1uta.matrix.gene.model.common.events.RawEvent;
 import io.github.ma1uta.matrix.gene.model.common.events.RawMessage;
@@ -80,7 +81,6 @@ import io.github.ma1uta.matrix.gene.model.common.events.RoomHistoryVisibility;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomJoinRules;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomMember;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomMessage;
-import io.github.ma1uta.matrix.gene.model.common.events.RoomMessageFeedback;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomName;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomPinned;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomPowerLevels;
@@ -217,8 +217,6 @@ public class EventDeserializer implements JsonDeserializer<Event> {
                 return context.deserialize(jsonElement, RoomMember.class);
             case ROOM_MESSAGE:
                 return roomMessage(jsonElement, context);
-            case ROOM_MESSAGE_FEEDBACK:
-                return context.deserialize(jsonElement, RoomMessageFeedback.class);
             case ROOM_NAME:
                 return context.deserialize(jsonElement, RoomName.class);
             case ROOM_PINNED_EVENTS:
@@ -237,6 +235,8 @@ public class EventDeserializer implements JsonDeserializer<Event> {
                 return context.deserialize(jsonElement, Tag.class);
             case TYPING:
                 return context.deserialize(jsonElement, Typing.class);
+            case FULLY_READ:
+                return context.deserialize(jsonElement, FullyRead.class);
             default:
                 return new RawEvent(jsonElement);
         }

@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events.messages;
-
-import io.github.ma1uta.matrix.gene.model.common.Event;
+package io.github.ma1uta.matrix.gene.model.common.events.nested;
 
 /**
- * This message is similar to m.text except that the sender is 'performing' the action contained in the body key, similar to /me in IRC.
- * This message should be prefixed by the name of the sender. This message could also be represented in a different colour to distinguish
- * it from regular m.text messages.
+ * Notifications.
  */
-public class Emote extends FormattedBody {
+public class Notifications {
 
-    @Override
-    public String getMsgtype() {
-        return Event.MessageType.EMOTE;
-    }
+    /**
+     * The level required to trigger an @room notification. Defaults to 50 if unspecified.
+     */
+    public Long room;
 }

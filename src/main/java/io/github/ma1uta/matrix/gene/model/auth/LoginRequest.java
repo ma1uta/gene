@@ -31,19 +31,9 @@ public class LoginRequest {
     public String type;
 
     /**
-     * The fully qualified user ID or just local part of the user ID, to log in.
+     * Identification information for the user.
      */
-    public String user;
-
-    /**
-     * When logging in using a third party identifier, the medium of the identifier. Must be 'email'.
-     */
-    public String medium;
-
-    /**
-     * Third party identifier for the user.
-     */
-    public String address;
+    public Identifier identifier;
 
     /**
      * Required when type is m.login.password. The user's password.

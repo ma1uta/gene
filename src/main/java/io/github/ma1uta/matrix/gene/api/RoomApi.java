@@ -26,6 +26,7 @@ import io.github.ma1uta.matrix.gene.model.room.PublicRoomsRequest;
 import io.github.ma1uta.matrix.gene.model.room.PublicRoomsResponse;
 import io.github.ma1uta.matrix.gene.model.room.RoomId;
 import io.github.ma1uta.matrix.gene.model.room.RoomVisibility;
+import io.github.ma1uta.matrix.gene.model.room.UnbanRequest;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -404,7 +405,7 @@ public interface RoomApi {
      */
     @POST("/_matrix/client/r0/rooms/{roomId}/unban")
     @Headers("Content-type: application/json")
-    EmptyResponse unban(@Path("roomId") String roomId, @Body KickRequest unbanRequest);
+    EmptyResponse unban(@Path("roomId") String roomId, @Body UnbanRequest unbanRequest);
 
     /**
      * Gets the visibility of a given room on the server's public room directory.

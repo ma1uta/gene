@@ -14,19 +14,16 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events.messages;
-
-import io.github.ma1uta.matrix.gene.model.common.Event;
+package io.github.ma1uta.matrix.gene.model.auth;
 
 /**
- * This message is similar to m.text except that the sender is 'performing' the action contained in the body key, similar to /me in IRC.
- * This message should be prefixed by the name of the sender. This message could also be represented in a different colour to distinguish
- * it from regular m.text messages.
+ * The user is identified by their Matrix ID.
  */
-public class Emote extends FormattedBody {
+public class UserIdentifier extends Identifier {
 
-    @Override
-    public String getMsgtype() {
-        return Event.MessageType.EMOTE;
-    }
+    /**
+     * A client can identify a user using their Matrix ID. This can either be the fully qualified Matrix user ID,
+     * or just the localpart of the user ID.
+     */
+    public String user;
 }

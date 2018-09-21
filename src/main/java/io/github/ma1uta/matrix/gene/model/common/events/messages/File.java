@@ -18,6 +18,7 @@ package io.github.ma1uta.matrix.gene.model.common.events.messages;
 
 import io.github.ma1uta.matrix.gene.model.common.Event;
 import io.github.ma1uta.matrix.gene.model.common.events.RoomMessage;
+import io.github.ma1uta.matrix.gene.model.common.events.nested.EncryptedFile;
 import io.github.ma1uta.matrix.gene.model.common.events.nested.FileInfo;
 
 /**
@@ -39,6 +40,11 @@ public class File extends RoomMessage {
      * Required. The URL to the file.
      */
     public String url;
+
+    /**
+     * Required if the file is encrypted. Information on the encrypted file, as specified in End-to-end encryption.
+     */
+    public EncryptedFile file;
 
     @Override
     public String getMsgtype() {

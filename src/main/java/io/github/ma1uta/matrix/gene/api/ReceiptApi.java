@@ -17,6 +17,9 @@
 package io.github.ma1uta.matrix.gene.api;
 
 import io.github.ma1uta.matrix.gene.model.common.EmptyResponse;
+import io.github.ma1uta.matrix.gene.model.receipt.ReadMarker;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -59,5 +62,22 @@ public interface ReceiptApi {
      * <p>Status code 429: This request was rate-limited.</p>
      */
     @POST("/_matrix/client/r0/rooms/{roomId}/receipt/{receiptType}/{eventId}")
+    @Headers("Content-type: application/json")
     EmptyResponse receipt(@Path("roomId") String roomId, @Path("receiptType") String receiptType, @Path("eventId") String eventId);
+
+    /**
+     * Sets the position of the read marker for a given room, and optionally the read receipt's location.
+     * <br>
+     * <b>Rate-limited:</b> Yes.
+     * <br>
+     * <b>Requires auth:</b> Yes.
+     *
+     * @param roomId Required. The room ID to set the read marker in for the user.
+     * @param marker JSON body request.
+     * @return <p>Status code 200: The read marker, and read receipt if provided, have been updated.</p>
+     * <p>This request was rate-limited.</p>
+     */
+    @POST("/_matrix/client/r0/rooms/{roomId}/read_markers")
+    @Headers("Content-type: application/json")
+    EmptyResponse readMarker(@Path("roomId") String roomId, @Body ReadMarker marker);
 }

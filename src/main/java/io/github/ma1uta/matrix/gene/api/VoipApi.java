@@ -18,6 +18,7 @@ package io.github.ma1uta.matrix.gene.api;
 
 import io.github.ma1uta.matrix.gene.model.voip.VoipResponse;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 
 /**
  * The homeserver MAY provide a TURN server which clients can use to contact the remote party. The following HTTP API endpoints will
@@ -35,6 +36,7 @@ public interface VoipApi {
      * @return <p>Status code 200: The TURN server credentials.</p>
      * <p>Status code 429: This request was rate-limited.</p>
      */
-    @GET("/_matrix/client/r0/voibrturnServer")
+    @GET("/_matrix/client/r0/turnServer")
+    @Headers("Content-type: application/json")
     VoipResponse turnServer();
 }

@@ -20,23 +20,14 @@ import com.google.gson.annotations.SerializedName;
 import io.github.ma1uta.matrix.gene.model.common.EventContent;
 
 /**
- * **NB: Usage of this event is discouraged in favour of the** `receipts module`_.
- * **Most clients will not recognise this event.** Feedback events are events sent to acknowledge a message in some way.
- * There are two supported acknowledgements: ``delivered`` (sent when the event has been received) and ``read``
- * (sent when the event has been observed by the end-user).
- * The ``target_event_id`` should reference the ``m.room.message`` event being acknowledged.
+ * The current location of the user's read marker in a room. This event appears in the user's room account data for the room
+ * the marker is applicable for.
  */
-@Deprecated
-public class RoomMessageFeedback implements EventContent {
+public class FullyRead implements EventContent {
 
     /**
-     * The event that this feedback is related to.
+     * Required. The event the user's read marker is located at in the room.
      */
-    @SerializedName("target_event_id")
-    public String targetEventId;
-
-    /**
-     * The type of feedback.
-     */
-    public String type;
+    @SerializedName("event_id")
+    public String eventId;
 }

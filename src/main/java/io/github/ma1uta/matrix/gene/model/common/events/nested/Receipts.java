@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events.messages;
+package io.github.ma1uta.matrix.gene.model.common.events.nested;
 
-import io.github.ma1uta.matrix.gene.model.common.Event;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Map;
 
 /**
- * This message is similar to m.text except that the sender is 'performing' the action contained in the body key, similar to /me in IRC.
- * This message should be prefixed by the name of the sender. This message could also be represented in a different colour to distinguish
- * it from regular m.text messages.
+ * Receipts.
  */
-public class Emote extends FormattedBody {
+public class Receipts {
 
-    @Override
-    public String getMsgtype() {
-        return Event.MessageType.EMOTE;
-    }
+    /**
+     * A collection of users who have sent m.read receipts for this event.
+     */
+    @SerializedName("m.read")
+    public Map<String, ReceiptTs> read;
 }

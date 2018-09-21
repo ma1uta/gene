@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Request for the proxies the identity server API validate/email/requestToken.
  */
-public class RequestToken {
+public class EmailRequestToken {
 
     /**
      * The ID server to send the onward request to as a hostname with an appended colon and port number if the port is not the default.

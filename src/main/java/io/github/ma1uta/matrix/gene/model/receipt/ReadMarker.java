@@ -14,19 +14,25 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events.messages;
+package io.github.ma1uta.matrix.gene.model.receipt;
 
-import io.github.ma1uta.matrix.gene.model.common.Event;
+import com.google.gson.annotations.SerializedName;
 
 /**
- * This message is similar to m.text except that the sender is 'performing' the action contained in the body key, similar to /me in IRC.
- * This message should be prefixed by the name of the sender. This message could also be represented in a different colour to distinguish
- * it from regular m.text messages.
+ * Read marker.
  */
-public class Emote extends FormattedBody {
+public class ReadMarker {
 
-    @Override
-    public String getMsgtype() {
-        return Event.MessageType.EMOTE;
-    }
+    /**
+     * Required. The event ID the read marker should be located at. The event MUST belong to the room.
+     */
+    @SerializedName("m.fully_read")
+    public String fullyRead;
+
+    /**
+     * The event ID to set the read receipt location at. This is equivalent to calling /receipt/m.read/$elsewhere:domain.com and
+     * is provided here to save that extra call.
+     */
+    @SerializedName("m.read")
+    public String read;
 }

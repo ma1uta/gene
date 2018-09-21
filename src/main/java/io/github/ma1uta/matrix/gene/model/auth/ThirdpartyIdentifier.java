@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-package io.github.ma1uta.matrix.gene.model.common.events.messages;
-
-import io.github.ma1uta.matrix.gene.model.common.Event;
+package io.github.ma1uta.matrix.gene.model.auth;
 
 /**
- * This message is similar to m.text except that the sender is 'performing' the action contained in the body key, similar to /me in IRC.
- * This message should be prefixed by the name of the sender. This message could also be represented in a different colour to distinguish
- * it from regular m.text messages.
+ * The user is identified by a third-party identifer in canonicalised form.
  */
-public class Emote extends FormattedBody {
+public class ThirdpartyIdentifier extends Identifier {
 
-    @Override
-    public String getMsgtype() {
-        return Event.MessageType.EMOTE;
-    }
+    /**
+     * The medium of the third party identifier.
+     */
+    public String medium;
+
+    /**
+     * The canonicalised third party address of the user.
+     */
+    public String address;
 }
